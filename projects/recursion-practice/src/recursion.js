@@ -45,14 +45,38 @@ var arraySum = function(array) {
 
 // 4. Check if a number is even.
 var isEven = function(n) {
-};
+  if(n < 0){
+    n = -n;
+  }
+  if (n === 1){
+    return false;
+  } if (n === 0) {
+  return true;
+  }
+  return isEven(n-2);
+}
+// find a way to do this recursively.  There is a slide, 22, on 
 
 // 5. Sum all integers below a given integer.
 // sumBelow(10); // 45
 // sumBelow(7); // 21
 var sumBelow = function(n) {
+// base
+if (n === 0) {
+  return 0;
+}  
+// recursion
+// what to do if n is positive
+if (n > 0) {
+ return (n - 1) + sumBelow(n - 1);
+}
+//return sumBelow(n - 1, sum)
+// what to do if n is negative.
+if (n < 0) {
+  return (n + 1) + sumBelow(n + 1);
+}
 };
-
+console.log(sumBelow());
 // 6. Get the integers in range (x, y).
 // Example:  range(2, 9);  // [3, 4, 5, 6, 7, 8]
 var range = function(x, y) {
@@ -64,8 +88,16 @@ var range = function(x, y) {
 // Example:  exponent(4,3);  // 64
 // https://www.khanacademy.org/computing/computer-science/algorithms/recursive-algorithms/a/computing-powers-of-a-number
 var exponent = function(base, exp) {
-};
 
+if (exp === 0) {
+  return 1;
+} // negative
+if (exp < 0){
+  return 1 / exponent(base, - exp);
+}
+// recursion. When it calls itself with a reduced exponent.
+return base * exponent(base, exp - 1)
+};
 // 8. Determine if a number is a power of two.
 // powerOfTwo(1); // true
 // powerOfTwo(16); // true
@@ -88,7 +120,7 @@ var palindrome = function(string) {
 // modulo(22,6) // 4
 var modulo = function(x, y) {
 };
-
+// 2 * 4 = 2+2+2+2 for below
 // 12. Write a function that multiplies two numbers without using the * operator  or
 // JavaScript's Math object.
 // ATTENTION DO NOT LEAVE COMMENTS IN THIS FUNCTION. The test is looking for any ('/').
