@@ -148,7 +148,17 @@ var fibonacci = function(n) {
 // nthFibo(5); // 5
 // nthFibo(7); // 13
 // nthFibo(3); // 2
-var nthFibo = function(n) {
+var nthFibo = function(n, fib=[0, 1]) {
+  if (n < 0) {
+    return null;
+  }
+if (fib.length > n) {
+  return fib[n];
+}
+// recursion
+// add to fib
+fib.push(fib(fib.length - 1) + fib(fib.length - 2));
+return nthFibo(n, fib);
 };
 
 // 26. Given an array of words, return a new array containing each word capitalized.
