@@ -91,6 +91,16 @@ var range = function(x, y, output = []) {
 // Example:  exponent(4,3);  // 64
 // https://www.khanacademy.org/computing/computer-science/algorithms/recursive-algorithms/a/computing-powers-of-a-number
 var exponent = function(base, exp) {
+      // Base case: any number to the power of 0 is 1
+      if (exp === 0) {
+        return 1;
+    }
+    // Handle negative exponent case
+    if (exp < 0) {
+        return 1 / exponent(base, -exp);
+    }
+    // Recursive case: multiply the base by the result of exponent for (exp - 1)
+    return base * exponent(base, exp - 1);
 };
 
 // 8. Determine if a number is a power of two.
@@ -98,14 +108,44 @@ var exponent = function(base, exp) {
 // powerOfTwo(16); // true
 // powerOfTwo(10); // false
 var powerOfTwo = function(n) {
+    // Base case: if n is 1, it is a power of two
+    if (n === 1) {
+      return true;
+  }
+  // Base case: if n is less than 1, it is not a power of two
+  if (n < 1) {
+      return false;
+  }
+  // Recursive case: divide n by 2 and check
+  return powerOfTwo(n / 2);
 };
 
 // 9. Write a function that accepts a string a reverses it.
 var reverse = function(string) {
+  if (string.length <= 1) {
+    return string;
+}
+// Recursive case: take the last character and concatenate it with the reverse of the rest of the string
+return string[string.length - 1] + reverse(string.slice(0, -1));
 };
 
 // 10. Write a function that determines if a string is a palindrome.
 var palindrome = function(string) {
+      // Normalize the string: remove non-alphanumeric characters and convert to lowercase
+      string = string.replace(/[^a-z0-9]/gi, '').toLowerCase();
+
+      // Base case: if the string is empty or has one character, it is a palindrome
+      if (string.length <= 1) {
+          return true;
+      }
+  
+      // Check if the first and last characters are the same
+      if (string[0] !== string[string.length - 1]) {
+          return false;
+      }
+  
+      // Recursive case: check the substring excluding the first and last characters
+      return palindrome(string.slice(1, -1));
 };
 
 // don't do 11
@@ -121,6 +161,13 @@ var modulo = function(x, y) {
 // JavaScript's Math object.
 // ATTENTION DO NOT LEAVE COMMENTS IN THIS FUNCTION. The test is looking for any ('/').
 var multiply = function(x, y) {
+  if (y === 0) {
+    return 0;
+}
+if (y > 0) {
+    return x + multiply(x, y - 1);
+}
+return -multiply(x, -y);
 };
 
 // don't do 13
@@ -144,6 +191,13 @@ var gcd = function(x, y) {
 // compareStr('', '') // true
 // compareStr('tomato', 'tomato') // true
 var compareStr = function(str1, str2) {
+  if (str1.length !== str2.length) {
+    return false;
+}
+if (str1.length === 0) {
+    return true;
+}
+return str1[0] === str2[0] && compareStr(str1.substring(1), str2.substring(1));
 };
 
 // 16. Write a function that accepts a string and creates an array where each letter
