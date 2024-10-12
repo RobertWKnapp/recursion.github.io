@@ -5,31 +5,78 @@
 // Example:  5! = 5 x 4 x 3 x 2 x 1 = 120
 // factorial(5);  // 120
 var factorial = function(n) {
+      // Base case: if n is 0, return 1 (0! is defined as 1)
+      if (n < 0) {
+        return null;
+      }
+      if (n === 0) {
+        return 1;
+    }
+    // Recursive case: n! = n * (n - 1)!
+    return n * factorial(n - 1);
 };
 
 // 2. Compute the sum of an array of integers.
 // Example:  sum([1, 2, 3, 4, 5, 6]);  // 21
 var sum = function(array) {
+    // Base case: if the array is empty, return 0
+    if (array.length === 0) {
+      return 0;
+  }
+  // Recursive case: take the first element and add it to the sum of the rest of the array
+  return array[0] + sum(array.slice(1));
 };
 
+// don't do 3.
 // 3. Sum all numbers in an array containing nested arrays.
 // Example: arraySum([1,[2,3],[[4]],5]); // 15
 var arraySum = function(array) {
 };
 
 // 4. Check if a number is even.
-var isEven = function(n) {
+var isEven = function(x) {
+  // convert x to a positive number to handle negatives
+  x = Math.abs(x);
+    // base case
+    if (x === 0) {
+      return true;
+    }
+    else if (x === 1) {
+      return false;
+    }
+    return isEven(x - 2);
 };
 
 // 5. Sum all integers below a given integer.
 // sumBelow(10); // 45
 // sumBelow(7); // 21
 var sumBelow = function(n) {
+    // Base case: if n is 0, return 0
+    if (n === 0) {
+      return 0;
+  }
+  // If n is negative, we compute the sum for positive integers and negate the result
+  if (n < 0) {
+      return (n + 1) + sumBelow(n + 1);
+  }
+  // Recursive case for positive integers
+  return (n - 1) + sumBelow(n - 1);
+
 };
 
 // 6. Get the integers in range (x, y).
 // Example:  range(2, 9);  // [3, 4, 5, 6, 7, 8]
-var range = function(x, y) {
+var range = function(x, y, output = []) {
+    // Base case: If x is greater than or equal to y, return the output array
+    if (x >= y) {
+      return output;
+  }
+
+  // Add the next integer to the output array
+  output.push(x + 1);
+
+  // Call the function recursively with the next integer
+  return range(x + 1, y, output);
 };
 
 // 7. Compute the exponent of a number.
@@ -55,6 +102,7 @@ var reverse = function(string) {
 var palindrome = function(string) {
 };
 
+// don't do 11
 // 11. Write a function that returns the remainder of x divided by y without using the
 // modulo (%) operator.
 // modulo(5,2) // 1
@@ -69,11 +117,13 @@ var modulo = function(x, y) {
 var multiply = function(x, y) {
 };
 
+// don't do 13
 // 13. Write a function that divides two numbers without using the / operator  or
 // JavaScript's Math object.
 var divide = function(x, y) {
 };
 
+// don't do 14
 // 14. Find the greatest common divisor (gcd) of two positive numbers.  The GCD of two
 // integers is the greatest integer that divides both x and y with no remainder.
 // Example:  gcd(4,36);  // 4
@@ -116,6 +166,7 @@ var countOccurrence = function(array, value) {
 var rMap = function(array, callback) {
 };
 
+// don't do 21
 // 21. Write a function that counts the number of times a key occurs in an object.
 // var testobj = {'e': {'x':'y'}, 't':{'r': {'e':'r'}, 'p': {'y':'r'}},'y':'e'};
 // countKeysInObj(testobj, 'r') // 1
@@ -123,6 +174,7 @@ var rMap = function(array, callback) {
 var countKeysInObj = function(obj, key) {
 };
 
+// don't do 22
 // 22. Write a function that counts the number of times a value occurs in an object.
 // var testobj = {'e': {'x':'y'}, 't':{'r': {'e':'r'}, 'p': {'y':'r'}},'y':'e'};
 // countValuesInObj(testobj, 'r') // 2
@@ -130,11 +182,13 @@ var countKeysInObj = function(obj, key) {
 var countValuesInObj = function(obj, value) {
 };
 
+// don't do 23.
 // 23. Find all keys in an object (and nested objects) by a provided name and rename
 // them to a provided new name while preserving the value stored at that key.
 var replaceKeysInObj = function(obj, key, newKey) {
 };
 
+// don't do 24
 // 24. Get the first n Fibonacci numbers.  In the Fibonacci Sequence, each subsequent
 // number is the sum of the previous two.
 // Example:  0, 1, 1, 2, 3, 5, 8, 13, 21, 34.....
@@ -172,6 +226,7 @@ var capitalizeWords = function(input) {
 var capitalizeFirst = function(array) {
 };
 
+// don't do 28
 // 28. Return the sum of all even numbers in an object containing nested objects.
 // var obj1 = {
 //   a: 2,
@@ -184,6 +239,7 @@ var capitalizeFirst = function(array) {
 var nestedEvenSum = function(obj) {
 };
 
+// don't do 29
 // 29. Flatten an array containing nested arrays.
 // Example: flatten([1,[2],[3,[[4]]],5]); // [1,2,3,4,5]
 var flatten = function(arrays) {
@@ -202,6 +258,7 @@ var letterTally = function(str, obj) {
 var compress = function(list) {
 };
 
+// don't do 32
 // 32. Augment every element in a list with a new value where each element is an array
 // itself.
 // Example: augmentElements([[],[3],[7]], 5); // [[5],[3,5],[7,5]]
